@@ -14,6 +14,16 @@ Verified through the actual game interface:
 - A real pointer drag places a rectangle; Erase removes it.
 - Desktop viewport 1471×827 has no horizontal document overflow.
 
-Still to verify: narrow-screen interaction, all sizes, printed answers, live deployment behavior, production URL/version, Search Console and analytics account states.
+Production checks (2026-09-26): the canonical Pages URL served build 527887ac5b4f4c0f during the game checks. In a 469×772 CSS-pixel viewport, no document overflow was found. Pointer dragging and two-corner selection were exercised; an invalid short rectangle was rejected. A full puzzle was completed through the visible controls, with 5/5 rectangles, 4:49 and 0 hints. Play another navigated to practice. A separate 390-pixel iframe layout was visually reviewed; this is not a physical touchscreen test.
+
+Google Search Console confirmed HTML-tag ownership. Its live smartphone test successfully fetched the homepage, found crawling/indexing allowed and the correct canonical. Manual indexing request was rejected for daily quota; it was not accepted. Sitemap submission succeeded, but the initial report said could not fetch; follow-up still required.
+
+Further production checks: switching to 7×7 and 9×9 generates playable grids; explained moves can be applied. The 9×9 larger-grid option scrolls within the board without overflowing the document. Cloudflare Web Analytics received its first test page view; this is not an acquired user. Build 25f6042d4233e9c2 and the injected beacon were verified on the canonical production homepage. A nonexistent URL returned HTTP 404.
+
+Google's live smartphone test also fetched `sitemap.xml` successfully at 23:46:52 on 2026-09-26. The valid XML contains 20 URLs. It was resubmitted once after that test; the sitemap report still displayed could not fetch. Do not confuse the live fetch success with completed sitemap processing or indexing.
+
+The portable HTML5 package was played in the browser: five explained moves completed the daily puzzle, Play another started a practice puzzle without leaving the embedded entry point, copying the puzzle link reported success, and the document had no horizontal overflow. The package contains only relative local assets and no advertising/analytics scripts. It has not yet been uploaded to itch.io or tested inside itch.io's actual sandbox.
+
+The printable page and answer diagrams were reviewed on screen. The print button was activated, but this browser surface did not expose a PDF/print preview, so printed pagination remains unverified. No physical touchscreen or field Core Web Vitals claim is made.
 
 These observations verify functionality, not search rankings or commercial viability.

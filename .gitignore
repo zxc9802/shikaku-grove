@@ -16,3 +16,4 @@ research/
 qa/*.json
 qa/*.txt
 qa/viewport.html
+qa/live-*

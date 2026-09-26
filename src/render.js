@@ -7,7 +7,7 @@ export function boardMarkup(puzzle, { interactive = false, solution = [] } = {})
  return interactive?`<div role="gridcell"><button class="cell" type="button" data-cell="${r*size+c}" tabindex="${r===0&&c===0?'0':'-1'}" aria-label="Row ${r+1}, column ${c+1}${clue?`, clue ${clue.value}`:', empty'}"><span>${clue?.value||''}</span></button></div>`:`<span class="cell" ${style}>${clue?.value||''}</span>`;
  }).join('')}</div>`).join('')}</div>`;
 }
-export function gameMarkup(puzzle, {mode='daily', level='easy', fixed=false}={}) {
+export function gameMarkup(puzzle, {mode='daily', level='easy', fixed=false, publicOrigin=''}={}) {
  return `<section class="game" aria-label="Play Shikaku"><div class="game-top"><div><span class="eyebrow" id="mode-label">${mode==='daily'?'THE DAILY PUZZLE':'PRACTICE YOUR WAY'}</span><p class="puzzle-label" id="puzzle-label">${escape(puzzle.id)}</p></div><div class="clock"><span>YOUR TIME</span><output id="timer">0:00</output></div></div>
  ${fixed?'':`<fieldset class="level-picker"><legend class="sr-only">Choose puzzle size</legend>${Object.entries(LEVELS).map(([key,v])=>`<label><input type="radio" name="level" value="${key}" ${key===level?'checked':''}><span>${v.label}<small>${v.size} × ${v.size}</small></span></label>`).join('')}</fieldset>`}
  <div class="board-wrap" id="board-wrap">${boardMarkup(puzzle,{interactive:true})}</div>
@@ -20,5 +20,5 @@ export function gameMarkup(puzzle, {mode='daily', level='easy', fixed=false}={})
  <details class="controls"><summary>Rules & keyboard controls</summary><p>Each rectangle holds one number. Its area must equal that number. Cover every cell without overlaps.</p><p><kbd>←</kbd> <kbd>↑</kbd> <kbd>↓</kbd> <kbd>→</kbd> move. <kbd>Enter</kbd> or <kbd>Space</kbd> selects the first and second corner. <kbd>Escape</kbd> cancels. <kbd>Delete</kbd> removes the rectangle under focus. Use Undo to take back a move.</p></details>
  <dialog id="restart-dialog"><h2>Start this puzzle again?</h2><p>Your rectangles and timer for this puzzle will be reset.</p><div class="finish-actions"><button type="button" id="cancel-restart">Keep playing</button><button type="button" id="confirm-restart" class="primary">Restart</button></div></dialog>
  <noscript><p>The interactive game needs JavaScript. The puzzle above and our <a href="/printable/">printable puzzles</a> are still available.</p></noscript>
- <script type="application/json" id="puzzle-data">${JSON.stringify({puzzle,mode,level,fixed}).replace(/</g,'\\u003c')}</script></section>`;
+ <script type="application/json" id="puzzle-data">${JSON.stringify({puzzle,mode,level,fixed,publicOrigin}).replace(/</g,'\\u003c')}</script></section>`;
 }

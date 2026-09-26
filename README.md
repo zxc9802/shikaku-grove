@@ -42,6 +42,10 @@ The intended host is Cloudflare Pages. Build, then deploy `dist/` with Wrangler.
 
 Cloudflare Web Analytics is enabled through the Pages dashboard; its beacon is injected on deployment. Other analytics and advertising are not enabled by placeholder identifiers. Optional Google Analytics requires a real configured property and the visitor's consent. No ad scripts or `ads.txt` are emitted by default.
 
+## HTML5 distribution package
+
+Run `npm run build:itch` to produce `.private/publishing/shikaku-grove-html5.zip` (requires the system `zip` utility). It includes the complete game and relative assets for HTML5 hosts. Share links point to the configured main website; Play another creates a practice grid inside the embedded page. This package does not include analytics, account verification tags or course research. Uploading it is a separate publishing step.
+
 ## Feedback
 
 Use the game's “Copy puzzle link” option when reporting a problem. Contact: asd785755358@gmail.com.

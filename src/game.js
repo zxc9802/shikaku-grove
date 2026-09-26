@@ -129,12 +129,12 @@ $('cancel-restart').onclick=()=>$('restart-dialog').close();
 $('confirm-restart').onclick=()=>{$('restart-dialog').close();try{localStorage.removeItem('sg:'+puzzle.id);}catch{}load();};
 function gameUrl() {
  if(fixed)return location.origin+location.pathname;
- return `${location.origin}/${mode==='daily'?'daily':'practice'}/?${mode==='daily'?'date='+date:'seed='+practiceSeed}&level=${level}`;
+ return `${data.publicOrigin||location.origin}/${mode==='daily'?'daily':'practice'}/?${mode==='daily'?'date='+date:'seed='+practiceSeed}&level=${level}`;
 }
 async function copy(text,message) {try{await navigator.clipboard.writeText(text);$('status').textContent=message;}catch{$('share-fallback').hidden=false;$('share-fallback').textContent=text;$('status').textContent='Copy the text shown below.';}}
 $('copy-puzzle').onclick=()=>copy(gameUrl(),'Puzzle link copied.');
 $('share').onclick=()=>copy(`Shikaku Grove · ${mode==='daily'?date:'Practice'}\n${puzzle.size}×${puzzle.size} · ${time(seconds())} · ${state.hints} hints\n${'▧'.repeat(Math.min(5,puzzle.size))} Solved\n${gameUrl()}`,'Result copied — ready to share.');
-$('next').onclick=()=>{location.href='/practice/?level='+level;};
+$('next').onclick=()=>{if(data.publicOrigin){checkpoint();mode='practice';fixed=false;practiceSeed=crypto.randomUUID().slice(0,12);load();}else location.href='/practice/?level='+level;};
 document.querySelectorAll('[name=level]').forEach(input=>input.onchange=()=>{checkpoint();level=input.value;load();});
 function checkpoint(){if(state?.startedAt&&!state.finished){state.elapsed+=Date.now()-state.startedAt;state.startedAt=null;persist();}}
 document.addEventListener('visibilitychange',()=>{if(document.hidden)checkpoint();});
