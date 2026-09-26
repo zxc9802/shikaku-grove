@@ -27,3 +27,5 @@ The portable HTML5 package was played in the browser: five explained moves compl
 The printable page and answer diagrams were reviewed on screen. The print button was activated, but this browser surface did not expose a PDF/print preview, so printed pagination remains unverified. No physical touchscreen or field Core Web Vitals claim is made.
 
 These observations verify functionality, not search rankings or commercial viability.
+
+Final live build: `184b5d923feabacf` (code commit `b57b6b7`). The feature numerals failed the first Lighthouse contrast check; their color was darkened to a measured 4.65:1 ratio. A fresh [PageSpeed report](https://pagespeed.web.dev/analysis/https-shikaku-grove-pages-dev/lvvmcsrota?form_factor=mobile) at 2026-09-27 01:41 GMT+8 measured mobile 99 performance, 100 accessibility, 100 best practices and 100 SEO (LCP 1.9s, TBT 0, CLS 0). Desktop scored 100 in all four categories (LCP 0.4s). These are lab measurements, not field data. The individual document-request-latency diagnostic errored; it is not recorded as passing.
