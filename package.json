@@ -1,0 +1,20 @@
+{
+  "name": "shikaku-grove",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/serve.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "npm test && npm run build && node scripts/check.mjs",
+    "deploy": "wrangler pages deploy dist --project-name shikaku-grove --branch main",
+    "preview": "wrangler pages dev dist"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "wrangler": "^4.141.0"
+  }
+}
